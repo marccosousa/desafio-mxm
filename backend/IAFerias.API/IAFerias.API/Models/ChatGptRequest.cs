@@ -2,17 +2,17 @@
 {
     public class ChatGptRequest
     {
-        public string? Model { get; set; }
-        public string? Prompt { get; set; }
-        public int MaxTokens { get; set; }
-        public decimal Temperature { get; set; }
+        public string model { get; set; }
+        public string prompt { get; set; }
+        public int max_tokens { get; set; }
+        public decimal temperature { get; set; }
 
         public ChatGptRequest(string lugar, int dias)
         {
-            Model = "text-davinci-003";
-            Prompt = $"Quero tirar férias em {lugar} durante {dias} dias. Pode preparar um roteiro para mim.";
-            MaxTokens = 100;
-            Temperature = 0.2m; 
+            model = "text-davinci-003";
+            prompt = $"Quero passar minhas férias em {lugar} durante {dias} dias. Prepare um roteiro com apenas um passeio por dia. Nada além.";
+            max_tokens = 200;
+            temperature = 0.2m; 
         }
     }
 }

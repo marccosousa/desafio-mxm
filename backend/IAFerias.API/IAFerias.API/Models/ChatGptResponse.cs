@@ -7,7 +7,7 @@
         public string? _object { get; set; }
         public int created { get; set; }
         public string? model { get; set; }
-        public Choice[]? choices { get; set; }
+        public IEnumerable<Choice>? choices { get; set; }
         public Usage? usage { get; set; }
     }
 
