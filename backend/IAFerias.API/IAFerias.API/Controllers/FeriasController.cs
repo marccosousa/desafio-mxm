@@ -18,13 +18,13 @@ namespace IAFerias.API.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult> Post(string lugar, int dias, [FromServices] IConfiguration config)
+        public async Task<ActionResult> Post([FromBody]Ferias ferias, [FromServices] IConfiguration config)
         {
             var gptKey = config.GetValue<string>("GptKey:ServiceApiKey"); 
             _httpClient.DefaultRequestHeaders.Authorization =
                 new AuthenticationHeaderValue("Bearer", gptKey);
 
-            var model = new ChatGptRequest(lugar, dias);
+            var model = new ChatGptRequest(ferias.Lugar, ferias.Dias);
             var requestBody = JsonSerializer.Serialize(model);
             var content = new StringContent(requestBody, Encoding.UTF8, "application/json");
 
