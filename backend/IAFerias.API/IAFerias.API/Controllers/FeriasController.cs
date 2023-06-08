@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using IAFerias.API.Interfaces;
 using IAFerias.API.Models;
 using IAFerias.API.Models.DTO;
 using Microsoft.AspNetCore.Mvc;
@@ -14,39 +15,35 @@ namespace IAFerias.API.Controllers
     [ApiController]
     public class FeriasController : ControllerBase
     {
-        private readonly HttpClient _httpClient;
-        private readonly IMapper _mapper;
-        public FeriasController(HttpClient httpClient, IMapper mapper)
+        private readonly IApiService _apiService;
+
+        public FeriasController(IApiService apiService)
         {
-            _httpClient = httpClient;
-            _mapper = mapper;
+            _apiService = apiService;
         }
 
         [HttpPost]
-        public async Task<ActionResult> Post([FromBody] Ferias ferias, [FromServices] IConfiguration config)
+        public async Task<ActionResult> Post([FromBody] Ferias ferias)
         {
-            var gptKey = config.GetValue<string>("GptKey:ServiceApiKey");
-            _httpClient.DefaultRequestHeaders.Authorization =
-                new AuthenticationHeaderValue("Bearer", gptKey);
-
-            var model = new ChatGptRequest(ferias);
-            var requestBody = JsonSerializer.Serialize(model);
-            var content = new StringContent(requestBody, Encoding.UTF8, "application/json");
-
-            var response = await _httpClient.PostAsync("https://api.openai.com/v1/completions", content);
-            if (response.IsSuccessStatusCode)
+            try
             {
-                var result = await response.Content.ReadFromJsonAsync<ChatGptResponse>();
-                var resultDTO = _mapper.Map<GptResponseDTO>(result);
-                var prompt = resultDTO?.Choice?.Text;
+                _apiService.AuthenticationKey();
+                var content = _apiService.CreateStringContent(ferias);
+                var response = await _apiService.SendRequestAsync(content);
 
-                if (!string.IsNullOrEmpty(prompt))
+                if (response.IsSuccessStatusCode)
                 {
-                    return Ok(prompt.Replace("\n", ""));
-                }
-            }
-            return BadRequest("Não foi possível fazer seu roteiro de férias.");
+                    var prompt = await _apiService.GetPromptAsync(response);
 
+                    return Ok(prompt.Replace("\n", "").Replace("\t", " "));
+
+                }
+                return BadRequest("Não foi possível fazer seu roteiro de férias.");
+            }
+            catch (Exception e)
+            {
+                return StatusCode(500, "Não conseguimos acessar o seu roteiro de férias: " + e.Message);
+            }
         }
     }
 }
