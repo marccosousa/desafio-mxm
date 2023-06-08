@@ -7,10 +7,10 @@
         public int max_tokens { get; set; }
         public decimal temperature { get; set; }
 
-        public ChatGptRequest(string lugar, int dias)
+        public ChatGptRequest(Ferias ferias)
         {
             model = "text-davinci-003";
-            prompt = $"Quero passar minhas férias em {lugar} durante {dias} dias. Prepare um roteiro com apenas um passeio por dia. Nada além.";
+            prompt = $"Quero passar minhas férias em {ferias.Lugar} durante {ferias.Dias} dias. Prepare um roteiro com apenas um passeio por dia. Nada além.";
             max_tokens = 200;
             temperature = 0.2m; 
         }
