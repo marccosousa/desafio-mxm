@@ -1,12 +1,7 @@
-﻿using AutoMapper;
-using IAFerias.API.Interfaces;
+﻿using IAFerias.API.Interfaces;
 using IAFerias.API.Models;
-using IAFerias.API.Models.DTO;
 using Microsoft.AspNetCore.Mvc;
-using System.Net.Http.Headers;
-using System.Runtime.Intrinsics.X86;
-using System.Text;
-using System.Text.Json;
+
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace IAFerias.API.Controllers
