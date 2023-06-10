@@ -13,14 +13,14 @@ export class AppComponent implements OnInit {
   
   ferias: any = {};
   
-  onSubmit(form: any) {
+  async onSubmit(form: any) {
     console.log(form); 
     console.log(this.ferias);
     this.gerarFerias(form)
    }
    
-   gerarFerias(f: FormGroup) {
-     this.service.gerarFerias(this.ferias)
+   async gerarFerias(f: FormGroup) {
+     (await this.service.gerarFerias(this.ferias))
                  .subscribe(response => {
                   console.log(response);
                   f.reset()

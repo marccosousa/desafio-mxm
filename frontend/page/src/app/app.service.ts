@@ -10,7 +10,7 @@ export class AppService {
 
     constructor (private http: HttpClient) { }
 
-    gerarFerias(ferias: any) {
-        return this.http.post(this.apiUrl, ferias);
+    async gerarFerias(ferias: any) {
+        return await this.http.post(this.apiUrl, ferias, {responseType: 'text'});
     }
 }
