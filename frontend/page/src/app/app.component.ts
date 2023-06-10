@@ -6,8 +6,12 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
+  
+  ferias: any = {};
+  
   onSubmit(form: any) {
     console.log(form); 
+    console.log(this.ferias);
    }
 
   constructor() { }

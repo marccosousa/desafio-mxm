@@ -8,11 +8,11 @@
         id="lugar"
         name="lugar"
         placeholder="Digite o lugar que você planeja ir."
-        ngModel
-        required
         minlength="3"
-        #nome="ngModel"
         oninput="this.value = this.value.replace(/[^a-zA-ZÀ-ú\s]/g, '')"
+        [(ngModel)]="ferias.lugar"
+        #nome="ngModel"
+        required
       />
       <div
         *ngIf="!nome.valid && nome.touched"
@@ -31,9 +31,9 @@
         placeholder="Digite quanto dias você planeja ficar."
         min="1"
         max="30"
-        ngModel
-        required
+        [(ngModel)]="ferias.dias"
         #dias="ngModel"
+        required
       />
       <div
         *ngIf="!dias.valid && dias.touched"
