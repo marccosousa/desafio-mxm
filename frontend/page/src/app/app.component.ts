@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { AppService } from './app.service';
 import { FormGroup } from '@angular/forms';
+import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
+import { ResponseModalComponent } from './response-modal/response-modal.component';
 
 @Component({
   selector: 'app-root',
@@ -9,7 +11,7 @@ import { FormGroup } from '@angular/forms';
 })
 export class AppComponent implements OnInit {
   
-  constructor(private service: AppService) { }
+  constructor(private service: AppService, private modalService: NgbModal ) { }
   
   ferias: any = {};
   
@@ -24,7 +26,13 @@ export class AppComponent implements OnInit {
                  .subscribe(response => {
                   console.log(response);
                   f.reset()
+                  this.mostrarFeriasModal(response);
                  }); 
+   }
+
+   mostrarFeriasModal(response: any) {
+      const modalRef = this.modalService.open(ResponseModalComponent); 
+      modalRef.componentInstance.response = response; 
    }
 
   ngOnInit() { }
