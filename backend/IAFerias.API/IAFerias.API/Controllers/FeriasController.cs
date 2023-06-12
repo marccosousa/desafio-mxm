@@ -30,7 +30,7 @@ namespace IAFerias.API.Controllers
                 {
                     var prompt = await _apiService.GetPromptAsync(response);
 
-                    return Ok(prompt.Replace("\n", "").Replace("\t", " "));
+                    return Ok(prompt.Replace(". ", ".\n").Replace("\t",""));
 
                 }
                 return BadRequest("Não foi possível fazer seu roteiro de férias.");
