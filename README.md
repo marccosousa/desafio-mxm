@@ -22,7 +22,7 @@
 <p>
   Por estar no início dos meus estudos de Angular, optei por usar Angular no meu frontend e a estilização utilizando o Bootstrap.
     Esse foi o meu maior desafio, pois tive preferência por estudar mais os conceitos de backend e meu conhecimentos de Angular ainda estão "verdes", mas com muita dedicação
-  e resiliência, consegui deixar tudo do melhor jeito que eu consegui. Então foi um ótimo projeto para aprender mais sobre o Angular!!!!!!!!!!
+  e resiliência, consegui deixar tudo do melhor jeito que eu consegui. Então foi um ótimo projeto para aprender mais sobre o Angular e comunicação de API's
 </p>
 
 <h2 align="center" id="features">Features</h2>
