@@ -49,5 +49,13 @@
         Planejar férias
       </button>
     </div>
+    <div *ngIf="exibindoSpinner" class="d-flex justify-content-center mt-3">
+      <p class="me-3">Planejando férias</p>
+      <div
+        class="spinner-border text-success"
+        role="status"
+        aria-hidden="true"
+      ></div>
+    </div>
   </form>
 </div>

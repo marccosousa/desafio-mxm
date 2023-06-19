@@ -14,6 +14,7 @@ export class AppComponent implements OnInit {
   constructor(private service: AppService, private modalService: NgbModal ) { }
   
   ferias: any = {};
+  exibindoSpinner: boolean = false; 
   
   async onSubmit(form: any) {
     console.log(form); 
@@ -22,10 +23,12 @@ export class AppComponent implements OnInit {
    }
    
    async gerarFerias(f: FormGroup) {
-     (await this.service.gerarFerias(this.ferias))
+    this.exibindoSpinner = true; 
+    (await this.service.gerarFerias(this.ferias))
                  .subscribe(response => {
                   console.log(response);
-                  f.reset()
+                  this.exibindoSpinner = false;
+                  f.reset(); 
                   this.mostrarFeriasModal(response);
                  }); 
    }

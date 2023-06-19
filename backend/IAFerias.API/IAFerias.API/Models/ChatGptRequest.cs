@@ -11,7 +11,7 @@
         {
             model = "text-davinci-003";
             prompt = $"Quero passar minhas férias em {ferias.Lugar} durante {ferias.Dias} dias. Prepare um roteiro com apenas um passeio por dia. Nada além.";
-            max_tokens = 200;
+            max_tokens = 500;
             temperature = 0.2m; 
         }
     }
