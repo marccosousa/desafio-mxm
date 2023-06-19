@@ -15,6 +15,7 @@ builder.Services.AddScoped<IApiService, ApiService>();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddCors();
+//test
 
 var app = builder.Build();
 
