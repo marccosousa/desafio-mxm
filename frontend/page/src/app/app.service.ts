@@ -6,7 +6,7 @@ import { HttpClient } from '@angular/common/http';
 })
 
 export class AppService {
-    apiUrl = 'https://localhost:7034/api/Ferias'
+    apiUrl = 'https://api-ferias.up.railway.app/api/Ferias'
 
     constructor (private http: HttpClient) { }
 
